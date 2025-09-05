@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CareerHub{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{% static 'images/generated-image (2).png' %}" alt="logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-item">Home</a></li>
+                <li><a href="#ats" class="nav-item">ATS Analysis</a></li>
+                <li><a href="#ap" class="nav-item">Resume Checker</a></li>
+                <li><a href="#score" class="nav-item">Score</a></li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+            <!-- Agar login h to logout button dikhega -->
+            <a href="{% url 'logout' %}" class="btn btn-red">Logout</a>
+            {% else %}
+            <!-- Agar login nahi h to signin & signup button dikhenge -->
+            <a href="{% url 'login' %}" class="btn btn-green">Signin</a>
+            <a href="{% url 'signup' %}" class="btn btn-red">Signup</a>
+            {% endif %}
+        </div>
+
+    </nav>
+
+    <!-- Page Content -->
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="{% static 'images/generated-image (2).png' %}" alt="Logo" class="logo">
+                <p class="footer-text">
+                    Smart Resume Analyzer helps you analyze resumes and get job recommendations instantly.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#hero" class="footer-item">Home</a></li>
+                    <li><a href="#ap" class="footer-item">Upload Resume</a></li>
+                    <li><a href="#score" class="footer-item">Job Recommendations</a></li>
+                    <li><a href="#ats" class="footer-item">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-heading">Contact Us</h3>
+                <p class="footer-text">Email: vishalfullstack1@gmail.com</p>
+                <p class="footer-text">Phone: +91 9335078851</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 CareerHub. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        document.getElementById("resumeInput").addEventListener("change", function () {
+            if (this.files.length > 0) {
+                document.getElementById("progressContainer").classList.remove("hidden");
+
+                let progress = 0;
+                let bar = document.getElementById("progressBar");
+                let interval = setInterval(() => {
+                    progress += 10;
+                    bar.style.width = progress + "%";
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        document.getElementById("resumeForm").submit();
+                    }
+                }, 200);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

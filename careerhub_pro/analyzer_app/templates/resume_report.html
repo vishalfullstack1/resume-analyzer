@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+/* Container */
+.report-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Headings */
+.report-container h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.report-container h2 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Suggestions */
+.suggestion {
+    background-color: #ffe5e5;
+    border: 1px solid #ffb3b3;
+    color: #b30000;
+}
+
+/* Recommended Jobs */
+.job {
+    background-color: #e5f0ff;
+    border: 1px solid #99c2ff;
+    color: #0047b3;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin: 30px auto 0 auto;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.back-btn:hover {
+    background-color: #357ac9;
+}
+</style>
+
+<div class="report-container">
+    
+    <!-- Heading -->
+    <h1>Resume Analysis Report</h1>
+
+    <!-- Suggestions Section -->
+    <div class="suggestions-section">
+        <h2>Resume Suggestions</h2>
+        {% if suggestions %}
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li class="suggestion">⚠️ {{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p style="color: green; font-weight: bold;">✅ Your resume looks great! No major suggestions.</p>
+        {% endif %}
+    </div>
+
+    <!-- Recommended Jobs Section -->
+    <div class="jobs-section" style="margin-top: 30px;">
+        <h2>Recommended Jobs</h2>
+        {% if recommended_jobs %}
+            <ul>
+                {% for job in recommended_jobs %}
+                    <li class="job">💼 {{ job }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No matching jobs found for your current resume.</p>
+        {% endif %}
+    </div>
+
+    <!-- Back Button -->
+    <div style="text-align: center;">
+        <a href="{% url 'upload_resume' %}" class="back-btn">Upload Another Resume</a>
+    </div>
+
+</div>
+
+{% endblock %}

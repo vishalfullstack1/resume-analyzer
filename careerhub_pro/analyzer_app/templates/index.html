@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}CareerHub Home{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="hero-section">
+    <div class="hero-left">
+        <p class="hero-title">Your Path to the Perfect Resume</p>
+        <p class="hero-subtitle">
+            Unlock the power of AI with our fast,<br> free resume analyzer that evaluates 16 key factors
+            to help your resume shine.
+        </p>
+        <!-- upload-form -->
+        <form method="POST" enctype="multipart/form-data" id="resumeForm" action="{% url 'upload_resume' %}">
+            {% csrf_token %}
+            <div class="upload-box">
+                <p>Drop your resume here or choose a file.</p>
+                <p>PDF & DOCX only. Max 2MB file size.</p>
+
+                <label class="upload-btn" for="resumeInput">
+                    <span>Upload Your Resume</span>
+                </label>
+                <input type="file" name="resume" accept="application/pdf" id="resumeInput" class="hidden" required>
+                <p class="privacy-note"></p>
+                <!-- Progress bar -->
+                <div class="progress-container hidden" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="hero-right">
+        <video src="{% static 'images/Man doing Profiles Verifications.mp4' %}" class="hero-video" autoplay muted
+            loop></video>
+    </div>
+</section>
+
+<!-- ATS Section -->
+<section id="ats" class="ats-section">
+    <div class="ats-video">
+        <video src="{% static 'images/video.mp4' %}" autoplay muted loop></video>
+    </div>
+    <div class="ats-text">
+        <button class="number">1</button>
+        <p class="ats-heading">Your resume is analyzed and scored based on ATS-friendly criteria.</p>
+        <p class="ats-description">Most resumes are first screened by an Applicant Tracking System (ATS) before reaching
+            a recruiter.</p>
+
+        <button class="number">2</button>
+        <p class="ats-heading">Like an ATS, we scan and interpret your resume. The better we understand it.</p>
+        <p class="ats-description">Smart AI guidance ensures your resume matches the job you want.</p>
+
+        <button class="number">3</button>
+        <p class="ats-heading">Built-in AI makes sure your resume speaks the recruiter’s language.</p>
+    </div>
+</section>
+
+<!-- Resume Checker Section -->
+<section id="ap" class="ap">
+    <div class="ap-hero">
+        <p class="text-one">AI-powered resume checker ensures structure,<br> skills, keywords, and impact.</p>
+        <p class="text-two">We’ve integrated ChatGPT into our platform to help you craft a resume tailored to your role
+            and industry.</p>
+
+        <div class="card">
+            <!-- Card Item 1 -->
+            <div class="card-item">
+                <img src="{% static 'Images/pdf.png' %}" alt="PDF-IMG">
+                <p id="text-h">Format</p>
+                <p class="text-p"><span class="tick">✔</span> File format and size</p>
+                <p class="text-p"><span class="tick">✔</span> Resume length</p>
+                <p class="text-p"><span class="tick">✔</span> Long bullet points suggestions</p>
+            </div>
+            <!-- Card Item 2 -->
+            <div class="card-item">
+                <img src="{% static 'Images/sign-contract-document.png' %}" alt="">
+                <p id="text-h">Resume sections</p>
+                <p class="text-p"><span class="tick">✔</span> Contact information</p>
+                <p class="text-p"><span class="tick">✔</span> Essential sections</p>
+                <p class="text-p"><span class="tick">✔</span> Personality showcase tips</p>
+            </div>
+            <!-- Card Item 3 -->
+            <div class="card-item">
+                <img src="{% static 'Images/pencil.png' %}" alt="">
+                <p id="text-h">Content</p>
+                <p class="text-p"><span class="tick">✔</span> ATS parse rate</p>
+                <p class="text-p"><span class="tick">✔</span> Repetition of words/phrases</p>
+                <p class="text-p"><span class="tick">✔</span> Spelling and grammar</p>
+                <p class="text-p"><span class="tick">✔</span> Quantifying impact examples</p>
+            </div>
+            <!-- Card Item 4 -->
+            <div class="card-item">
+                <img src="{% static 'Images/bulb.png' %}" alt="">
+                <p id="text-h">Skills suggestion</p>
+                <p class="text-p"><span class="tick">✔</span> Hard skills</p>
+                <p class="text-p"><span class="tick">✔</span> Soft skills</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Edit Resume Section -->
+<section class="edit-resume">
+    <div class="text-edit">
+        <p class="text-first">Craft a Resume That Gets You Hired</p>
+        <p class="text-second">
+            Match your resume to job postings using targeted keywords, skills, and ATS-friendly formatting.
+            Refine your application with Spark Resume Builder — add, reorder, or remove sections easily.
+        </p>
+    </div>
+    <div class="edit-ai">
+        <video src="{% static 'images/vishal2.mp4' %}" autoplay muted loop></video>
+    </div>
+</section>
+
+<!-- Score Check Section -->
+<section id="score" class="scorechek">
+    <div class="upload-section-text">
+        <p class="f-text">Instantly see your resume score!</p>
+        <p class="s-text">Receive a customized email tasklist after uploading your resume.</p>
+        <div class="upload-section-file">
+            <label class="upload-label">
+                <input type="file" name="" id="">
+                <p class="drop">Drop your resume here or choose a file.</p>
+                <p class="pdf">PDF & DOCX only. Max 2MB file size.</p>
+            </label>
+        </div>
+    </div>
+</section>
+
+<!-- Last Section -->
+<section class="last">
+    <div class="video-last">
+        <video src="{% static 'images/CV analysis.mp4' %}" autoplay loop muted></video>
+    </div>
+    <div class="cv-images">
+        <img src="{% static 'images/resume3.webp' %}" alt="">
+        <img src="{% static 'images/resume4.webp' %}" alt="">
+    </div>
+</section>
+{% endblock %}

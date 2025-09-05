@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data" id="resumeForm" action="{% url 'upload_resume' %}">
+    {% csrf_token %}
+    <div class="upload-box">
+        <p>Drop your resume here or choose a file.</p>
+        <p>PDF & DOCX only. Max 2MB file size.</p>
+
+        <label class="upload-btn" for="resumeInput">
+            <span>Upload Your Resume</span>
+        </label>
+        <input type="file" name="resume" accept="application/pdf" id="resumeInput" class="hidden" required>
+        <p class="privacy-note"></p>
+        <!-- Progress bar -->
+        <div class="progress-container hidden" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+</form>
+{% endblock %}
